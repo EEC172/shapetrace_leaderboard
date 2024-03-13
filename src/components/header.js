@@ -14,7 +14,7 @@ function Header() {
                 <Col>
                     <Nav className="d-flex justify-content-end">
                         <Nav.Link className="navbar-text" href="/">All-Time</Nav.Link>
-                        <Nav.Link className="navbar-text" href="/shape">Shape</Nav.Link>
+                        <Nav.Link className="navbar-text" href="/square">Square</Nav.Link>
                         <Nav.Link className="navbar-text" href="/triangle">Triangle</Nav.Link>
                         <Nav.Link className="navbar-text" href="/circle">Circle</Nav.Link>
                         <Nav.Link className="navbar-text" href="/">EEC172</Nav.Link>

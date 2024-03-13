@@ -23,6 +23,24 @@ router.route("/get-all-shadows").get((req, res) => {
         .catch(err => res.status(400).json("Error: " + err));
 });
 
+router.route("/get-all-squares").get((req, res) => {
+    Shadow.find({ "shape": "square" })
+        .then(item => res.json(item))
+        .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.route("/get-all-circles").get((req, res) => {
+    Shadow.find({ "shape": "circle" })
+        .then(item => res.json(item))
+        .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.route("/get-all-triangles").get((req, res) => {
+    Shadow.find({ "shape": "triangle" })
+        .then(item => res.json(item))
+        .catch(err => res.status(400).json("Error: " + err));
+});
+
 router.route("/delete-all-shadows").delete((req, res) => {
     Shadow.deleteMany({})
         .then(() => res.json("All items deleted successfully"))

@@ -3,11 +3,11 @@ import { Row, Col } from 'react-bootstrap';
 import Board from './board';
 import axios from "axios";
 
-function Home() {
+function Circle() {
     const [shadows, setShadows] = useState([]); 
 
     useEffect(() => { 
-        axios.get('http://localhost:5001/shadow/get-all-shadows')
+        axios.get('http://localhost:5001/shadow/get-all-circles')
         .then((res) => {
             setShadows(res.data); 
         }) 
@@ -36,4 +36,4 @@ function Home() {
 
 }
 
-export default Home; 
+export default Circle; 
