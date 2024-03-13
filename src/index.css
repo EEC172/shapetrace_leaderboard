@@ -1,7 +1,19 @@
+@font-face {
+  font-family: 'pixel';
+  src: url('./../public/fonts/visitor1.ttf') format('truetype');
+  /* You can define multiple src for different font formats */
+  /* e.g., src: url('./fonts/CustomFont-Regular.ttf') format('truetype'),
+            url('./fonts/CustomFont-Regular.woff') format('woff'); */
+}
+
+body {
+  font-family: 'CustomFont', sans-serif; /* Use CustomFont as the default font */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'pixel',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

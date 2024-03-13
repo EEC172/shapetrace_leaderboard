@@ -1,0 +1,15 @@
+.board{
+    background-color: black;
+    height: 128px; 
+    width: 128px;
+    margin: 10px; 
+}
+
+
+.board-row {
+    margin: 0 !important; 
+}
+
+.board-col {
+    margin: 0 !important; 
+}

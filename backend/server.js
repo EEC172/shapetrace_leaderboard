@@ -7,6 +7,15 @@ const app = express();
 const port = 5001;
 const uri = process.env.ATLAS_URI; 
 
+const cors = require("cors");
+app.use(cors());
+
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
+
+const shadowRouter = require("./routes/shadow");
+app.use("/shadow", shadowRouter);
+
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
 });
