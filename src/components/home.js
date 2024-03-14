@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Board from './board';
 import axios from "axios";
+import './../css/home.css';
 
 function Home() {
     const [shadows, setShadows] = useState([]); 
@@ -15,14 +16,19 @@ function Home() {
     }, []);
 
     return (
-        <div>
+        <div className='home'>
+            <Row className='table-row'>
+                <Col className='cell-col'>Shape</Col>
+                <Col className='cell-col'>Score</Col>
+                <Col className='cell-col'>Drawing</Col>
+            </Row>
             {
                 shadows.length > 0 ? (
                     shadows.map((item, index) => (
-                        <Row key={index}>
+                        <Row key={index} className='cell-row'>
                             <Col><p>{item.shape}</p></Col>
-                            <Col> <Board board={item.board}/> </Col>
                             <Col><p>{item.score}</p></Col>
+                            <Col className='center'> <Board board={item.board} /> </Col>
                         </Row>
                     ))
                 ) : (

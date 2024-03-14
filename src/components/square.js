@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Board from './board';
 import axios from "axios";
+import './../css/home.css';
 
 function Square() {
     const [shadows, setShadows] = useState([]); 
@@ -15,19 +16,23 @@ function Square() {
     }, []);
 
     return (
-        <div>
+        <div className='home'>
+            <h1>Shape</h1>
+            <Row className='table-row'>
+                <Col className='cell-col'>Score</Col>
+                <Col className='cell-col'>Drawing</Col>
+            </Row>
             {
                 shadows.length > 0 ? (
                     shadows.map((item, index) => (
-                        <Row key={index}>
-                            <Col><p>{item.shape}</p></Col>
-                            <Col> <Board board={item.board}/> </Col>
+                        <Row key={index} className='cell-row'>
                             <Col><p>{item.score}</p></Col>
+                            <Col className='center'> <Board board={item.board}/> </Col>
                         </Row>
                     ))
                 ) : (
                     <Row>
-                        <Col><p>No Scores Yet!</p></Col>
+                        <Col><h1>No Scores Yet!</h1></Col>
                     </Row>
                 )
             }

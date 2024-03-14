@@ -1,0 +1,30 @@
+.home {
+    font-family: pixel;
+    color: #ffe000 !important;
+    font-size: 25px;
+}
+
+.table-row {
+    margin: 60px 60px 0px;
+    border: 10px solid antiquewhite;
+}
+
+.cell-row {
+    margin: 30px 60px 0px;
+    border-bottom: 5px solid antiquewhite;
+    display: flex !important;
+    align-items: center;
+}
+
+.cell-col {
+    border-right: 5px solid antiquewhite;
+}
+
+.center {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+h1 {
+    margin-top: 50px;
+}
