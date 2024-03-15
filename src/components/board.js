@@ -30,6 +30,100 @@ function Board (props) {
                 }
             }
         }
+        if (shape === 'House') {
+            let starting_point = 40;
+            let x = starting_point; let y = starting_point;
+            let limit = starting_point + 50;
+            for (y = starting_point; y < limit; y++) {
+                for (x = starting_point; x < limit; x++) {
+                    if (y == starting_point || y == limit-1 || x == starting_point || x == limit-1) {
+                        if (grid[x][y] === '0')
+                            grid[x][y] = "2";
+                    }
+                }
+            }
+            let roof_start = 40; let roof_end = 90;
+            let middle = (roof_start + roof_end) / 2;
+            let i;
+            for (i = 1; i <= middle - roof_start; i++) {
+                if (grid[roof_start-i][roof_start+i] === '0')
+                    grid[roof_start-i][roof_start+i] = "2";
+
+                if (grid[roof_start-i][roof_end-i] === '0')
+                    grid[roof_start-i][roof_end-i] = "2";
+            }
+        }
+        if (shape === 'Triangle') {
+            let base = 60; let height = 60; let starting_point = 30;
+            let x = starting_point; let y = starting_point;
+            for (y = starting_point; y < starting_point + height; y++) {
+                for (x = starting_point; x < starting_point + base - (y - 30); x++) {
+                    if (x == starting_point || y == starting_point ||
+                            x == starting_point + base - (y - 30) - 1) {
+                        if (grid[x][y] === '0')
+                            grid[x][y] = "2";
+
+                    }
+                }
+            }
+        }
+        if (shape === 'Circle') {
+            let x0 = 60; 
+            let y0 = 60; 
+            let r = 30; 
+            let f = 1 - r;
+            let ddF_x = 1;
+            let ddF_y = -2 * r;
+            let x = 0;
+            let y = r;
+      
+            if (grid[x0][y0+r] === '0')
+                grid[x0][y0+r] = "2";
+
+            if (grid[x0][y0-r] === '0')
+                grid[x0][y0-r] = "2";
+
+            if (grid[x0+r][y0] === '0')
+                grid[x0+r][y0] = "2";
+
+            if (grid[x0-r][y0] === '0')
+                grid[x0-r][y0] = "2";
+      
+            while (x<y) {
+                if (f >= 0) {
+                    y--;
+                    ddF_y += 2;
+                    f += ddF_y;
+                }
+                x++;
+                ddF_x += 2;
+                f += ddF_x;
+      
+                if (grid[x0+x][y0+y] === '0')
+                    grid[x0+x][y0+y] = "2";
+
+                if (grid[x0-x][y0+y] === '0')
+                    grid[x0-x][y0+y] = "2";
+
+                if (grid[x0+x][y0-y] === '0')
+                    grid[x0+x][y0-y] = "2";
+                
+                if (grid[x0-x][y0-y] === '0')
+                    grid[x0-x][y0-y] = "2";
+
+                if (grid[x0+y][y0+x] === '0')
+                    grid[x0+y][y0+x] = "2";
+
+                if (grid[x0-y][y0+x] === '0')
+                    grid[x0-y][y0+x] = "2";
+
+                if (grid[x0+y][y0-x] === '0')
+                    grid[x0+y][y0-x] = "2";
+                
+                if (grid[x0-y][y0-x] === '0')
+                    grid[x0-y][y0-x] = "2";
+            }
+        }
     }
 
     function stringToBits() {
