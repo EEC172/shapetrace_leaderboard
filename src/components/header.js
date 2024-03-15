@@ -8,7 +8,7 @@ function Header() {
         <div className="navbar-container">
         <Navbar expand="lg" className="bg-body-tertiary navbar-subcontainer"  sticky="top">
             <Row className="navbar-row">
-                <Col sm = {5} md={5} lg={5}>
+                <Col sm = {4} md={4} lg={4}>
                     <Navbar.Brand className="logo-text" href="/">ShapeTrace Leaderboard</Navbar.Brand>
                 </Col>
                 <Col>
@@ -16,6 +16,7 @@ function Header() {
                         <Nav.Link className="navbar-text" href="/">All-Time</Nav.Link>
                         <Nav.Link className="navbar-text" href="/square">Square</Nav.Link>
                         <Nav.Link className="navbar-text" href="/triangle">Triangle</Nav.Link>
+                        <Nav.Link className="navbar-text" href="/house">House</Nav.Link>
                         <Nav.Link className="navbar-text" href="/circle">Circle</Nav.Link>
                         <Nav.Link className="navbar-text" href="/">EEC172</Nav.Link>
                     </Nav>

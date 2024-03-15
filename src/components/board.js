@@ -1,59 +1,78 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 import './../css/board.css'
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+
 
 function Board (props) {
     const board_string = props.board; 
+    const shape = props.shape; 
+    const changed = props.changed; 
     const [boardGrid, setGrid] = useState([]);
-    // const grid = new Array(128).fill().map(() => new Array(128).fill(0)); 
+
+    var grid = new Array(128).fill().map(() => new Array(128).fill(0)); 
+    
 
     useLayoutEffect(() => { 
-        if (boardGrid.length === 0) {
+        if (boardGrid.length === 0 || changed) {
             stringToBits();
         }
     }, []);
 
-    function stringToBits() {
-        const grid = new Array(128).fill().map(() => new Array(128).fill(0)); 
-        let gridRow = 0; 
-        let gridCol = 0; 
-        // for (let row = 0; row < 32; row++) {
-        //     for (let col = row*32; col < row*32 + 31; col++) {
-        //         // console.log(board_string[col] + board_string[col+1] + " ");
-        //         // 1 char = 2 hex digits = 8 bits (4 bits each)
-        //         let hex = board_string[col];
-        //         let bin = parseInt(hex, 16).toString(2).padStart(4, '0');
-        //         for(let index = 0; index < 4; index++) {
-        //             grid[gridRow][gridCol + index] = parseInt(bin[index]);
-        //         }
-        //         gridCol += 4; 
-        //         if (gridCol === 128) {
-        //             console.log("hit max, resetting gridCol, index=" + row+ " " + col + " " + gridRow + " " + gridCol)
-        //             gridRow += 1; 
-        //             gridCol = 0; 
-
-        //         }
-        //     }
-        //     console.log(gridRow);
-        // }
-
-        for (let row = 0; row < 128; row++) {
-            for (let col = row*128; col < row*128 + 128; col++) {
-                grid[gridRow][gridCol] = parseInt(board_string[col]);
-                gridCol ++; 
-                if (gridCol === 128) {
-                    gridCol = 0; 
+    function drawShape() {
+        if (shape === 'Square') {
+            for (let i = 30; i < 90; i++) {
+                for (let j = 30; j < 90; j++) {
+                    if (((i==30 && j != 30) ||
+                            (i==89 && j != 89) || (j == 30 || j == 89)) &&
+                        grid[i][j] === '0') {
+                        grid[i][j] = "2";
+                    }
                 }
             }
-            gridRow++; 
         }
+    }
 
-        console.log(grid);
+    function stringToBits() {
+        // console.log(grid);
+        
+        let gridRow = 0; 
+        let gridCol = 0; 
+
+        for (let i = 0; i < board_string.length; i++) {
+            let char = parseInt(board_string[i], 16);
+            
+            var binary = char.toString(2).toString();
+            while (binary.length < 4) {
+                binary = '0' + binary;
+            }
+            // console.log(gridRow + "," + gridCol + " " + gridRow + "," + (gridCol+1) + " " + (gridRow+1) + "," + gridCol + " " +  (gridRow+1) + " " + (gridCol+1));
+            
+            if (gridRow+1 < 128 && gridCol+1 < 128) {
+                grid[gridCol][gridRow] = binary[0];
+                grid[gridCol+1][gridRow] = binary[1];
+                grid[gridCol][gridRow+1] = binary[2];
+                grid[gridCol+1][gridRow+1] = binary[3];
+                // if (char != 0)
+                // console.log(grid[gridRow][gridCol] + grid[gridRow][gridCol+1] + "\n" +  grid[gridRow+1][gridCol] + grid[gridRow+1][gridCol+1]);
+            }
+            gridCol+=2; 
+            if (gridCol === 128) {
+                gridCol = 0; 
+                gridRow+=2; 
+            }
+        }
+        drawShape();
         setGrid(grid); 
     }
 
     function getColor(value) {
-        return value === 1 ? 'green' : 'black'; 
+        if (value === '1') {
+            return 'yellow';
+        } else if (value==='2') {
+            return 'cyan';
+        } else {
+            return 'black';
+        }
     }
 
     return (
@@ -74,4 +93,4 @@ function Board (props) {
     )
 }
 
-export default Board; 
+export default Board;

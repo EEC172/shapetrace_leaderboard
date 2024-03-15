@@ -4,7 +4,7 @@ import Board from './board';
 import axios from "axios";
 import './../css/home.css';
 
-function Triangle() {
+function House() {
     const [shadows, setShadows] = useState([]); 
     const [sorted, setSorted] = useState(false);
 
@@ -19,7 +19,7 @@ function Triangle() {
     }
 
     useEffect(() => { 
-        axios.get('http://localhost:5001/shadow/get-all-triangle')
+        axios.get('http://localhost:5001/shadow/get-all-houses')
         .then((res) => {
             if (shadows.length !== res.data.length) {
                 setShadows(res.data); 
@@ -38,7 +38,7 @@ function Triangle() {
 
     return (
         <div className='home'>
-            <h1>Triangle</h1>
+            <h1>House</h1>
             <Row className='table-row'>
                 <Col className='cell-col'>Score</Col>
                 <Col className='cell-col'>Drawing</Col>
@@ -75,4 +75,4 @@ function Triangle() {
 
 }
 
-export default Triangle; 
+export default House; 

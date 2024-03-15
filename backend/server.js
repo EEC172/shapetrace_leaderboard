@@ -14,7 +14,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 const shadowRouter = require("./routes/shadow");
-// const Shadow = require("./models/shadow.model.js");
+const Shadow = require("./models/shadow.model.js");
 app.use("/shadow", shadowRouter);
 
 app.listen(port, () => {
@@ -63,13 +63,23 @@ thingShadows.on('delta',
         console.log('received delta on '+thingName+': '+
                    JSON.stringify(stateObject));
 
-        console.log(typeof stateObject);
 
-        // const newShadow = new Shadow({
-        //     stateObject.board, 
-        //     stateObject.score, 
-        //     stateObject.shape
-        // })
+        // const obj = JSON.parse(stateObject);
+        // console.log(obj);
+        // console.log(obj.shape)
+
+        const score = stateObject.state.score;
+        const shape = stateObject.state.shape;
+        const board = stateObject.state.board;
+
+        const newShadow = new Shadow({
+            board, 
+            score, 
+            shape
+        })
+        newShadow.save()
+        .then(() => console.log("New Shadow Added!"))
+        .catch(err => console.log(err));
     });
 
 thingShadows.on('timeout',

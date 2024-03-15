@@ -24,19 +24,25 @@ router.route("/get-all-shadows").get((req, res) => {
 });
 
 router.route("/get-all-squares").get((req, res) => {
-    Shadow.find({ "shape": "square" })
+    Shadow.find({ "shape": "Square" })
         .then(item => res.json(item))
         .catch(err => res.status(400).json("Error: " + err));
 });
 
 router.route("/get-all-circles").get((req, res) => {
-    Shadow.find({ "shape": "circle" })
+    Shadow.find({ "shape": "Circle" })
         .then(item => res.json(item))
         .catch(err => res.status(400).json("Error: " + err));
 });
 
 router.route("/get-all-triangles").get((req, res) => {
-    Shadow.find({ "shape": "triangle" })
+    Shadow.find({ "shape": "Triangle" })
+        .then(item => res.json(item))
+        .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.route("/get-all-houses").get((req, res) => {
+    Shadow.find({ "shape": "House" })
         .then(item => res.json(item))
         .catch(err => res.status(400).json("Error: " + err));
 });
