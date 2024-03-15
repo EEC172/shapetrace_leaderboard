@@ -49,7 +49,6 @@ function House() {
                     shadows.length > 0 ? (
                         shadows.map((item, index) => (
                             <Row key={index} className='cell-row'>
-                                <Col><p>{item.shape}</p></Col>
                                 <Col><p>{item.score}</p></Col>
                                 <Col className='center'> 
                                     <Board board={item.board} shape={item.shape} changed={sorted}/> 
